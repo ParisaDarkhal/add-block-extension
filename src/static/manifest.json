@@ -2,28 +2,24 @@
   "name": "React Extension",
   "description": "Chrome Extension in React!",
   "version": "1.0.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "icons": {
     "16": "icon.png",
     "48": "icon.png",
     "128": "icon.png"
   },
 
-"declarative_net_request" : {
-    "rule_resources" : [{
-      "id": "ruleset_1",
-      "enabled": true,
-      "path": "rules_1.json"
-    }, {
-      "id": "ruleset_2",
-      "enabled": false,
-      "path": "rules_2.json"
-    }]
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
   },
 
-
-
-  "permissions": ["webRequest", "webRequestBlocking", "<all_urls>", "declarativeNetRequest"],
+  "permissions": ["declarativeNetRequest"],
 
   "background": {
     "service_worker": "background.js"
