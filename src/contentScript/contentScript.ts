@@ -5,7 +5,7 @@ const rules: { [url: string]: () => void } = {
 }
 
 function filterNYT() {
-  return //just because we want to use ad block by class ad
+  //   return //just because we want to use ad block by class ad
   const observer = new MutationObserver(() => {
     const wrapper = document.getElementById('dfp-ad-top')
     const wrapper2 = document.getElementById('after-dfp-ad-top')
@@ -32,36 +32,29 @@ function filterNYT() {
     observer.observe(document.body, { childList: true, subtree: true })
     console.log('Started observing DOM for ad elements.')
   }, 1000) // Start observing after a 1-second delay
-    
-    
 }
 
-
 function filterNYTbyClass() {
-    const observer = new MutationObserver(() => {
-      const divs = document.getElementsByTagName('div')
-      for (const div of Array.from(divs)) {  
-        if (div.classList.contains('ad')) {
-          div.style.display = 'none'
-        }
+  const observer = new MutationObserver(() => {
+    const divs = document.getElementsByTagName('div')
+    for (const div of Array.from(divs)) {
+      if (div.classList.contains('ad')) {
+        div.style.display = 'none'
       }
-    })
-  
-    // Start observing changes in the body
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,  // Observe all changes in the DOM tree, not just direct children
-    })
-  
-    console.log('Started observing DOM for ad elements.')
-  }
-  
-  // Call the function to start filtering ads by class
-  filterNYTbyClass()
-  
-  
+    }
+  })
 
+  // Start observing changes in the body
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true, // Observe all changes in the DOM tree, not just direct children
+  })
 
+  console.log('Started observing DOM for ad elements.')
+}
+
+// Call the function to start filtering ads by class
+filterNYTbyClass()
 
 // Match the domain more flexibly using `includes`
 if (Object.keys(rules).some((rule) => document.URL.includes(rule))) {
