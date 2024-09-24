@@ -1,6 +1,18 @@
-const app = document.getElementById('site-content')
-const wrapper = document.getElementById('dfp-ad-top')
+//this is for nytimes.com
 
-console.log(wrapper)
-
-app.removeChild(wrapper)
+const observer = new MutationObserver(() => {
+    const wrapper = document.getElementById('dfp-ad-top')
+    const wrapper2 = document.getElementById('after-dfp-ad-top')
+  
+    if (wrapper) {
+      wrapper.remove()  // Remove the first ad
+    }
+    
+    if (wrapper2) {
+      wrapper2.remove()  // Remove the second ad
+    }
+  });
+  
+  // Observe changes to the DOM
+  observer.observe(document.body, { childList: true, subtree: true });
+  
